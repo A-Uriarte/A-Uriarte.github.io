@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AITOR URIARTE ZUBIMENDI</title>
+<!-- Open Graph para LinkedIn, WhatsApp, X, etc. -->
+<meta property="og:title" content="Portfolio de Aitor Uriarte Zubimendi — Ciberseguridad &amp; Sistemas">
+<meta property="og:description" content="Administrador de Sistemas y Ciberseguridad. Proyectos, informes y manuales técnicos.">
+<meta property="og:url" content="https://A-Uriarte.github.io">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://A-Uriarte.github.io/Images/portfolio-2400.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== PALETA: cambia solo estas variables para retocar los colores ===== */
+:root {
+  --bg: #f4f5f6;          /* fondo de la página */
+  --panel: #ffffff;       /* tarjetas y marcos */
+  --border: #d9dde1;      /* líneas */
+  --text: #1c2127;        /* texto principal */
+  --dim: #5b646d;         /* texto secundario */
+  --accent: #0f6b66;      /* acento sobre fondo claro (verde petróleo) */
+
+  --ink: #20262b;         /* barra lateral y portada (grafito) */
+  --ink-text: #f1f3f4;
+  --ink-dim: #aab3bb;
+  --ink-accent: #5fd0c5;  /* acento sobre grafito */
+  --red: #f0837a;         /* "Red Team" */
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+h1, h2, h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* SIDEBAR */
+#sidebar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 78px; height: 100vh;
+  background: var(--ink);
+  border-right: 1px solid #2f373d;
+  z-index: 1000;
+  transition: width 0.4s ease;
+  padding-top: 100px;
+  overflow: hidden;
+}
+#sidebar:hover { width: 260px; }
+
+.sidebar-header { padding: 0 2rem 2.5rem; text-align: center; }
+.sidebar-header .portfolio-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink-accent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+#sidebar:hover .portfolio-title { opacity: 1; }
+
+.sidebar-nav ul { list-style: none; }
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 24px;
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+.sidebar-nav a:hover,
+.sidebar-nav a.active {
+  background: rgba(95,208,197,0.10);
+  color: var(--ink-accent);
+}
+
+/* MAIN */
+.main-content { margin-left: 78px; transition: margin-left 0.4s; }
+#sidebar:hover ~ .main-content { margin-left: 260px; }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: var(--ink);
+  color: var(--ink-text);
+}
+.hero-title {
+  font-size: clamp(42px, 6vw, 72px);
+  margin-bottom: 1rem;
+  color: #fff;
+}
+.hero-sub { font-size: 1.4rem; color: var(--ink-dim); }
+.red-team { color: var(--red); }
+
+/* SECCIONES */
+.wrap { padding: 5rem 4rem; max-width: 1200px; margin: 0 auto; }
+
+.sec-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+.sec-lbl {
+  font-size: 13px;
+  padding: 6px 18px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 9999px;
+  font-weight: 500;
+}
+.sec-title { font-size: 2.5rem; color: var(--text); }
+
+#proyectos h3 { color: var(--text); font-size: 1.25rem; margin-bottom: .6rem; }
+#proyectos iframe {
+  background: var(--panel);
+  border: 1px solid var(--border) !important;
+  border-radius: 8px;
+}
+
+#certificaciones ul { padding-left: 1.2rem; }
+#certificaciones li::marker { color: var(--accent); }
+#certificaciones em { color: var(--dim); }
+#certificaciones img { border: 1px solid var(--border); opacity: 1 !important; }
+
+.social-btns { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+.social-btn {
+  padding: 14px 32px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  text-decoration: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+}
+.social-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-4px); }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+.reveal.on { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 700px) { .wrap { padding: 3rem 1.2rem; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <div class="sidebar-header">
+    <div class="portfolio-title">PORTFOLIO</div>
+  </div>
+  <div class="sidebar-nav">
+    <ul>
+      <li><a href="#hero" class="active">Inicio</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#certificaciones">Certificaciones</a></li>
+      <li><a href="#redes">Redes</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="main-content">
+
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <h1 class="hero-title">AITOR URIARTE ZUBIMENDI</h1>
+    <p class="hero-sub">Profesional de Sistemas y Ciberseguridad <span class="red-team">• Red Team</span> &amp; Defensive Security</p>
+  </div>
+</section>
+
+<section id="proyectos" class="wrap">
+  <div class="sec-head reveal">
+    <div class="sec-lbl">PROYECTOS</div>
+    <h2 class="sec-title">Informes profesionales</h2>
+  </div>
+
+  <div style="margin-bottom:2em;">
+    <h3>Informe Pentest Metasploitable3</h3>
+    <iframe src="https://A-Uriarte.github.io/Informes/Informe_Pentest_Metasploitable3.pdf" width="100%" height="600px"></iframe>
+  </div>
+
+  <div style="margin-top:2em;">
+    <h3>Informe OSINT Empresa Cintranaval</h3>
+    <iframe src="https://A-Uriarte.github.io/Informes/Informe_OSINT_Cintranaval.pdf" width="100%" height="600px"></iframe>
+  </div>
+
+  <div style="margin-top:2em;">
+    <h3>Informe Análisis de Malware Cerber</h3>
+    <iframe src="https://A-Uriarte.github.io/Informes/Informe_Análisis_de_Malware.pdf" width="100%" height="600px"></iframe>
+  </div>
+
+  <div style="margin-top:2em;">
+    <h3>Informe Ciberseguridad Inetum</h3>
+    <iframe src="https://A-Uriarte.github.io/Informes/Informe_Ciberseguridad_INETUM.pdf" width="100%" height="600px"></iframe>
+  </div>
+</section>
+
+<section id="certificaciones" class="wrap">
+  <div class="sec-head reveal"><div class="sec-lbl">CREDENCIALES</div><h2 class="sec-title">Certificaciones</h2></div>
+  <ul>
+    <li>
+      <strong>Bootcamp Ciberseguridad</strong> - TheBridge | Digital Talent Accelerator <em>(06/2026)</em>
+      <br>
+      <a href="https://A-Uriarte.github.io/Images/bootcamp.png" target="_blank">
+        <img src="https://A-Uriarte.github.io/Images/bootcamp.png" alt="Certificado Bootcamp Ciberseguridad" style="width:300px; margin-top:0.5em; border-radius:6px;">
+      </a>
+    </li>
+    <li style="margin-top:1em;">
+      <strong>Cisco Certified Support Technician Cybersecurity (CCST Cybersecurity)</strong> - Cisco <em>(11/2026)</em>
+      <br>
+      <a href="https://A-Uriarte.github.io/Images/ccstcyber.jpg" target="_blank">
+        <img src="https://A-Uriarte.github.io/Images/ccstcyber.jpg" alt="Cisco Certified Support Technician Cybersecurity (CCST Cybersecurity)" style="width:300px; margin-top:0.5em; border-radius:6px;">
+      </a>
+    </li>
+    <li style="margin-top:1em;"><strong>CCST Networking</strong> - Cisco <em>(en curso)</em></li>
+    <li style="margin-top:1em;"><strong>Ethical Hacker</strong> - Cisco <em>(en curso)</em></li>
+    <li style="margin-top:1em;"><strong>English for IT Intermediate - B2 / GSE 59-75</strong> - Pearson <em>(en curso)</em></li>
+    <li style="margin-top:1em;"><strong>eJPT</strong> - INE <em>(en curso)</em></li>
+  </ul>
+</section>
+
+<section id="redes" class="wrap">
+  <div class="sec-head reveal on"><div class="sec-lbl">CONTACTO</div><h2 class="sec-title">Conectemos</h2></div>
+  <div class="social-btns reveal on">
+    <a href="https://www.linkedin.com/in/aitor-uriarte-zubimendi" target="_blank" class="social-btn">LinkedIn</a>
+    <a href="https://github.com/A-Uriarte" target="_blank" class="social-btn">GitHub</a>
+    <a href="https://www.instagram.com/_sakaiawea_/?hl=es" target="_blank" class="social-btn">Instagram</a>
+  </div>
+</section>
+
+</div>
+
+<script>
+// Aparición al hacer scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('on');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
